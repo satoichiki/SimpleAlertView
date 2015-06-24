@@ -71,10 +71,6 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
     var kWindowHeight: CGFloat = 158.0
     var kTextHeight: CGFloat = 90.0
 
-    // Font
-    let kDefaultFont = "HelveticaNeue"
-    let kButtonFont = "HelveticaNeue-Bold"
-
     // UI Colour
     var viewColor = UIColor()
     var pressBrightnessFactor = 0.85
@@ -112,14 +108,14 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
         // Title
         labelTitle.numberOfLines = 1
         labelTitle.textAlignment = .Center
-        labelTitle.font = UIFont(name: kDefaultFont, size:20)
+        labelTitle.font = UIFont.systemFontOfSize(20)
         labelTitle.frame = CGRect(x:12, y:kTitleTop, width: kWindowWidth - 24, height:kTitleHeight)
         // View text
         viewText.editable = false
         viewText.textAlignment = .Center
         viewText.textContainerInset = UIEdgeInsetsZero
         viewText.textContainer.lineFragmentPadding = 0;
-        viewText.font = UIFont(name: kDefaultFont, size:14)
+        viewText.font = UIFont.systemFontOfSize(14)
         // Colours
         contentView.backgroundColor = UIColorFromRGB(0xFFFFFF)
         labelTitle.textColor = UIColorFromRGB(0x4D4D4D)
@@ -185,7 +181,7 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
         let txt = UITextField()
         txt.delegate = self
         txt.borderStyle = UITextBorderStyle.RoundedRect
-        txt.font = UIFont(name:kDefaultFont, size: 14)
+        txt.font = UIFont.systemFontOfSize(14)
         txt.autocapitalizationType = UITextAutocapitalizationType.Words
         txt.clearButtonMode = UITextFieldViewMode.WhileEditing
         txt.layer.masksToBounds = true
@@ -226,7 +222,7 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
         let btn = SCLButton()
         btn.layer.masksToBounds = true
         btn.setTitle(title, forState: .Normal)
-        btn.titleLabel?.font = UIFont(name:kButtonFont, size: 14)
+        btn.titleLabel?.font = UIFont.boldSystemFontOfSize(14)
         contentView.addSubview(btn)
         buttons.append(btn)
         return btn
