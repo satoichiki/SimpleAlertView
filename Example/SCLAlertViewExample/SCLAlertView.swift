@@ -62,7 +62,6 @@ public class SCLAlertViewResponder {
     }
 }
 
-
 // The Main Class
 public class SCLAlertView: UIViewController {
     let kDefaultShadowOpacity: CGFloat = 0.7
@@ -381,11 +380,6 @@ public class SCLAlertView: UIViewController {
             let txt = completeText != nil ? completeText! : "閉じる"
             addButton(txt, target:self, selector:Selector("hideView"))
         }
-        
-//        if style != .Wait {
-//            let txt = completeText != nil ? completeText! : "Done"
-//            addButton(txt, target:self, selector:Selector("hideView"))
-//        }
 
         for txt in inputs {
             txt.layer.borderColor = viewColor.CGColor

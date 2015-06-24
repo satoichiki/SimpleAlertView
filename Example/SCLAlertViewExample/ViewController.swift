@@ -19,6 +19,7 @@ let kSubtitle = "You've just displayed this awesome Pop Up View"
 let kDefaultAnimationDuration = 2.0
 
 class ViewController: UIViewController {
+    var wait = SCLAlertView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,14 +67,14 @@ class ViewController: UIViewController {
 	}
 	
     @IBAction func showWait(sender: AnyObject) {
-                SCLAlertView().showWait(kWaitTitle, subTitle: kSubtitle)
         println("start loading...")
+        wait.showWait(kWaitTitle, subTitle: kSubtitle)
         NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector:"hideWait:", userInfo: nil, repeats: false)
     }
     
     func hideWait(timer: NSTimer) {
         println("finish loading...")
-        //        SCLAlertView().showWait(kWaitTitle, subTitle: kSubtitle)
+        wait.hideView()
     }
     
 	func firstButton() {
