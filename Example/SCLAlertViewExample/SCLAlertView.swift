@@ -191,6 +191,10 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
         }
         contentView.addSubview(txt)
         inputs.append(txt)
+        //Gesture Recognizer for tapping outside the textinput
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
+        tapGesture.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(tapGesture)
         return txt
     }
 
@@ -308,10 +312,6 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
     
     // showEdit(view, title, subTitle)
     public func showEdit(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xA429FF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        //Gesture Recognizer for tapping outside the textinput
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
-        tapGesture.numberOfTapsRequired = 1
-        self.view.addGestureRecognizer(tapGesture)
         return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Edit, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
 
