@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showInfo(sender: AnyObject) {
-        SCLAlertView().showAlert(kInfoTitle, subTitle: kSubtitle)
+        SCLAlertView().showAlert("登録が完了しました", subTitle: "ありがとうございます。管理ページより内容を確認してください。", colorStyle: UIColor(red: 255/255, green: 193/255, blue: 33/255, alpha: 1.0))
     }
 
 	@IBAction func showEdit(sender: AnyObject) {
@@ -68,8 +68,8 @@ class ViewController: UIViewController {
 	
     @IBAction func showWait(sender: AnyObject) {
         println("start loading...")
-        wait.showLoading(kWaitTitle, subTitle: kSubtitle)
-        NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector:"hideWait:", userInfo: nil, repeats: false)
+        wait.showLoading("ロード中です", subTitle: "データ通信をしています。しばらくお待ちください。")
+        NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector:"hideWait:", userInfo: nil, repeats: false)
     }
     
     func hideWait(timer: NSTimer) {
