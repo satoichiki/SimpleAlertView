@@ -63,7 +63,7 @@ public class SCLAlertViewResponder {
 }
 
 // The Main Class
-public class SCLAlertView: UIViewController {
+public class SCLAlertView: UIViewController, UITextFieldDelegate {
     let kDefaultShadowOpacity: CGFloat = 0.7
     let kTitleTop:CGFloat = 10.0
     let kTitleHeight:CGFloat = 40.0
@@ -172,12 +172,18 @@ public class SCLAlertView: UIViewController {
             view.endEditing(true)
         }
     }
+    
+    public func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     public func addTextField(title:String?=nil)->UITextField {
         // Update view height
         kWindowHeight += 40.0
         // Add text field
         let txt = UITextField()
+        txt.delegate = self
         txt.borderStyle = UITextBorderStyle.RoundedRect
         txt.font = UIFont(name:kDefaultFont, size: 14)
         txt.autocapitalizationType = UITextAutocapitalizationType.Words
