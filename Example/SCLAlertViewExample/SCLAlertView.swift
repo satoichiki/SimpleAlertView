@@ -281,17 +281,17 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
     }
 
     // showAlert(view, title, subTitle)
-    public func showAlert(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UIColor?=UIColor.grayColor(), colorTextButton: UIColor=UIColor.whiteColor()) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Alert, colorStyle: colorStyle, colorTextButton: colorTextButton)
+    public func showAlert(title: String, subTitle: String, colorStyle: UIColor?=UIColor.grayColor(), colorTextButton: UIColor=UIColor.whiteColor(), closeButtonTitle:String?=nil) -> SCLAlertViewResponder {
+        return showTitle(title, subTitle: subTitle, completeText:closeButtonTitle, style: .Alert, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
 
     // showLoading(view, title, subTitle)
-    public func showLoading(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Loading, colorStyle: UIColor.clearColor(), colorTextButton: UIColor.whiteColor())
+    public func showLoading(title: String, subTitle: String) -> SCLAlertViewResponder {
+        return showTitle(title, subTitle: subTitle, completeText:"", style: .Loading, colorStyle: UIColor.clearColor(), colorTextButton: UIColor.whiteColor())
     }
 
     // showTitle(view, title, subTitle, duration, style)
-    public func showTitle(title: String, subTitle: String, duration: NSTimeInterval?, completeText: String?, style: SCLAlertViewStyle, colorStyle: UIColor?, colorTextButton: UIColor?) -> SCLAlertViewResponder {
+    public func showTitle(title: String, subTitle: String, completeText: String?, style: SCLAlertViewStyle, colorStyle: UIColor?, colorTextButton: UIColor?) -> SCLAlertViewResponder {
         view.alpha = 0
         let rv = UIApplication.sharedApplication().keyWindow! as UIWindow
         rv.addSubview(view)
@@ -338,12 +338,6 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
         for btn in buttons {
             btn.backgroundColor = viewColor
             btn.setTitleColor(colorTextButton!, forState:UIControlState.Normal)
-        }
-
-        // Adding duration
-        if duration > 0 {
-            durationTimer?.invalidate()
-            durationTimer = NSTimer.scheduledTimerWithTimeInterval(duration!, target: self, selector: Selector("hideView"), userInfo: nil, repeats: false)
         }
 
         // Animate in the alert view
