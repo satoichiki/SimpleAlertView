@@ -38,23 +38,23 @@ class ViewController: UIViewController {
 		alert.addButton("Second Button") {
 			println("Second button tapped")
 		}
-        alert.showSuccess(kSuccessTitle, subTitle: kSubtitle)
+        alert.showAlert(kSuccessTitle, subTitle: kSubtitle)
     }
     
     @IBAction func showError(sender: AnyObject) {
-		SCLAlertView().showError("Hold On...", subTitle:"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.", closeButtonTitle:"OK")
+		SCLAlertView().showAlert("Hold On...", subTitle:"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.", closeButtonTitle:"OK")
     }
     
     @IBAction func showNotice(sender: AnyObject) {
-        SCLAlertView().showNotice(kNoticeTitle, subTitle: kSubtitle)
+        SCLAlertView().showAlert(kNoticeTitle, subTitle: kSubtitle)
     }
     
     @IBAction func showWarning(sender: AnyObject) {
-        SCLAlertView().showWarning(kWarningTitle, subTitle: kSubtitle)
+        SCLAlertView().showAlert(kWarningTitle, subTitle: kSubtitle)
     }
     
     @IBAction func showInfo(sender: AnyObject) {
-        SCLAlertView().showInfo(kInfoTitle, subTitle: kSubtitle)
+        SCLAlertView().showAlert(kInfoTitle, subTitle: kSubtitle)
     }
 
 	@IBAction func showEdit(sender: AnyObject) {
@@ -63,12 +63,12 @@ class ViewController: UIViewController {
 		alert.addButton("Show Name") {
 			println("Text value: \(txt.text)")
 		}
-		alert.showEdit(kInfoTitle, subTitle:kSubtitle)
+		alert.showAlert(kInfoTitle, subTitle:kSubtitle)
 	}
 	
     @IBAction func showWait(sender: AnyObject) {
         println("start loading...")
-        wait.showWait(kWaitTitle, subTitle: kSubtitle)
+        wait.showLoading(kWaitTitle, subTitle: kSubtitle)
         NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector:"hideWait:", userInfo: nil, repeats: false)
     }
     

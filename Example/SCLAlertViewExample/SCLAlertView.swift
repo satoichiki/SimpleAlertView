@@ -11,7 +11,7 @@ import UIKit
 
 // Pop Up Styles
 public enum SCLAlertViewStyle {
-    case Success, Error, Notice, Warning, Info, Edit, Wait
+    case Alert, Loading
 }
 
 // Action Types
@@ -280,44 +280,14 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
 
-    // showSuccess(view, title, subTitle)
-    public func showSuccess(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x22B573, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Success, colorStyle: colorStyle, colorTextButton: colorTextButton)
+    // showAlert(view, title, subTitle)
+    public func showAlert(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x727375, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
+        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Alert, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
 
-    // showError(view, title, subTitle)
-    public func showError(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xC1272D, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Error, colorStyle: colorStyle, colorTextButton: colorTextButton)
-    }
-
-    // showNotice(view, title, subTitle)
-    public func showNotice(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x727375, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Notice, colorStyle: colorStyle, colorTextButton: colorTextButton)
-    }
-
-    // showWarning(view, title, subTitle)
-    public func showWarning(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xFFD110, colorTextButton: UInt=0x000000) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Warning, colorStyle: colorStyle, colorTextButton: colorTextButton)
-    }
-
-    // showInfo(view, title, subTitle)
-    public func showInfo(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0x2866BF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Info, colorStyle: colorStyle, colorTextButton: colorTextButton)
-    }
-
-    // showWait(view, title, subTitle)
-    public func showWait(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt?=0xFFFFFF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Wait, colorStyle: colorStyle, colorTextButton: colorTextButton)
-    }
-    
-    // showEdit(view, title, subTitle)
-    public func showEdit(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xA429FF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Edit, colorStyle: colorStyle, colorTextButton: colorTextButton)
-    }
-
-    // showTitle(view, title, subTitle, style)
-    public func showTitle(title: String, subTitle: String, style: SCLAlertViewStyle, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt?, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
-        return showTitle(title, subTitle: subTitle, duration:duration, completeText:closeButtonTitle, style: style, colorStyle: colorStyle, colorTextButton: colorTextButton)
+    // showLoading(view, title, subTitle)
+    public func showLoading(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt?=0xFFFFFF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
+        return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Loading, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
 
     // showTitle(view, title, subTitle, duration, style)
@@ -333,25 +303,10 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
 
         // Icon style
         switch style {
-        case .Success:
+        case .Alert:
             viewColor = UIColorFromRGB(colorStyle!)
-
-        case .Error:
-            viewColor = UIColorFromRGB(colorStyle!)
-
-        case .Notice:
-            viewColor = UIColorFromRGB(colorStyle!)
-
-        case .Warning:
-            viewColor = UIColorFromRGB(colorStyle!)
-
-        case .Info:
-            viewColor = UIColorFromRGB(colorStyle!)
-
-        case .Edit:
-            viewColor = UIColorFromRGB(colorStyle!)
-
-        case .Wait:
+            
+        case .Loading:
             viewColor = UIColorFromRGB(colorStyle!)
         }
 
@@ -376,7 +331,7 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
         }
 
         // Done button
-        if style == .Wait {
+        if style == .Loading {
             addActivityIndicator()
         } else {
             let txt = completeText != nil ? completeText! : "閉じる"
