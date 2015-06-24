@@ -13,6 +13,7 @@ let kErrorTitle = "Connection error"
 let kNoticeTitle = "Notice"
 let kWarningTitle = "Warning"
 let kInfoTitle = "Info"
+let kWaitTitle = "Wait"
 let kSubtitle = "You've just displayed this awesome Pop Up View"
 
 let kDefaultAnimationDuration = 2.0
@@ -65,6 +66,10 @@ class ViewController: UIViewController {
 		alert.showEdit(kInfoTitle, subTitle:kSubtitle)
 	}
 	
+    @IBAction func showWait(sender: AnyObject) {
+        SCLAlertView().showWait(kWaitTitle, subTitle: kSubtitle)
+    }
+    
 	func firstButton() {
 		println("First button tapped")
 	}
