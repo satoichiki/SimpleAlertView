@@ -42,7 +42,6 @@ class ViewController: UIViewController {
     
     @IBAction func showError(sender: AnyObject) {
 		SCLAlertView().showError("Hold On...", subTitle:"You have not saved your Submission yet. Please save the Submission before accessing the Responses list. Blah de blah de blah, blah. Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.Blah de blah de blah, blah.", closeButtonTitle:"OK")
-//        SCLAlertView().showError(self, title: kErrorTitle, subTitle: kSubtitle)
     }
     
     @IBAction func showNotice(sender: AnyObject) {
@@ -67,7 +66,14 @@ class ViewController: UIViewController {
 	}
 	
     @IBAction func showWait(sender: AnyObject) {
-        SCLAlertView().showWait(kWaitTitle, subTitle: kSubtitle)
+                SCLAlertView().showWait(kWaitTitle, subTitle: kSubtitle)
+        println("start loading...")
+        NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector:"hideWait:", userInfo: nil, repeats: false)
+    }
+    
+    func hideWait(timer: NSTimer) {
+        println("finish loading...")
+        //        SCLAlertView().showWait(kWaitTitle, subTitle: kSubtitle)
     }
     
 	func firstButton() {

@@ -79,9 +79,6 @@ public class SCLAlertView: UIViewController {
     // UI Colour
     var viewColor = UIColor()
     var pressBrightnessFactor = 0.85
-    
-    // UI Options
-    var showCloseButton = true
 
     // Members declaration
     var baseView = UIView()
@@ -129,10 +126,6 @@ public class SCLAlertView: UIViewController {
         labelTitle.textColor = UIColorFromRGB(0x4D4D4D)
         viewText.textColor = UIColorFromRGB(0x4D4D4D)
         contentView.layer.borderColor = UIColorFromRGB(0xCCCCCC).CGColor
-        //Gesture Recognizer for tapping outside the textinput
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
-        tapGesture.numberOfTapsRequired = 1
-        self.view.addGestureRecognizer(tapGesture)
     }
 
     override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -233,6 +226,22 @@ public class SCLAlertView: UIViewController {
         buttons.append(btn)
         return btn
     }
+    
+    private func addActivityIndicator()->SCLButton {
+        // Update view height
+        kWindowHeight += 45.0
+        // Add button
+        let btn = SCLButton()
+        btn.layer.masksToBounds = true
+        // Add loading indicator
+        let indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, kWindowWidth - 24, 35))
+        indicator.activityIndicatorViewStyle = .Gray
+        indicator.startAnimating()
+        btn.addSubview(indicator)
+        contentView.addSubview(btn)
+        buttons.append(btn)
+        return btn
+    }
 
     func buttonTapped(btn:SCLButton) {
         if btn.actionType == SCLActionType.Closure {
@@ -292,11 +301,16 @@ public class SCLAlertView: UIViewController {
     }
 
     // showWait(view, title, subTitle)
-    public func showWait(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt?=0xD62DA5, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
+    public func showWait(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt?=0xFFFFFF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
         return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Wait, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
-  
+    
+    // showEdit(view, title, subTitle)
     public func showEdit(title: String, subTitle: String, closeButtonTitle:String?=nil, duration:NSTimeInterval=0.0, colorStyle: UInt=0xA429FF, colorTextButton: UInt=0xFFFFFF) -> SCLAlertViewResponder {
+        //Gesture Recognizer for tapping outside the textinput
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
+        tapGesture.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(tapGesture)
         return showTitle(title, subTitle: subTitle, duration: duration, completeText:closeButtonTitle, style: .Edit, colorStyle: colorStyle, colorTextButton: colorTextButton)
     }
 
@@ -361,21 +375,16 @@ public class SCLAlertView: UIViewController {
         }
 
         // Done button
-        if showCloseButton {
-            let txt = completeText != nil ? completeText! : "Done"
+        if style == .Wait {
+            addActivityIndicator()
+        } else {
+            let txt = completeText != nil ? completeText! : "閉じる"
             addButton(txt, target:self, selector:Selector("hideView"))
         }
-
-        // Alert view colour and images
-//        circleView.backgroundColor = viewColor
-        // Spinner / icon
-//        if style == .Wait {
-//            let indicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-//            indicator.startAnimating()
-//            circleIconView = indicator
-//            circleView.addSubview(circleIconView!)
-//            let x = (kCircleHeight - kCircleIconHeight) / 2
-//            circleIconView!.frame = CGRectMake( x, x, kCircleIconHeight, kCircleIconHeight)
+        
+//        if style != .Wait {
+//            let txt = completeText != nil ? completeText! : "Done"
+//            addButton(txt, target:self, selector:Selector("hideView"))
 //        }
 
         for txt in inputs {
