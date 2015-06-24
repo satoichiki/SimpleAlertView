@@ -1,5 +1,12 @@
-SCLAlertView
+SCLAlertView (カスタマイズ版)
 ===========
+※変更点
+- アイコンの削除
+- Alert,Loadingの2スタイルに統合し、色指定をラップ化
+- Loadingスタイルにアクティブインジケーター追加
+- 色指定をUIIntからUIColorに変更
+
+thanks :bow:
 
 Animated Alert View written in Swift, which can be used as a `UIAlertView` or `UIAlertController` replacement. Since `UIAlertView` is deprecated and `UIAlertController` only works on iOS 8.x or above, if you have a Swift project where you want to support iOS 7.x too, SCLAlertView is an ideal substitution.
 
