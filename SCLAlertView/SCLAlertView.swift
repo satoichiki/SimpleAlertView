@@ -356,11 +356,12 @@ public class SCLAlertView: UIViewController, UITextFieldDelegate {
     
     // Close SCLAlertView
     public func hideView() {
-        UIView.animateWithDuration(0.2, animations: {
-            self.view.alpha = 0
-            }, completion: { finished in
-                self.view.removeFromSuperview()
-        })
+        self.view.removeFromSuperview()
+//        UIView.animateWithDuration(0.2, animations: {
+//            self.view.alpha = 0
+//            }, completion: { finished in
+//                self.view.removeFromSuperview()
+//        })
     }
     
     // Helper function to convert from RGB to UIColor
